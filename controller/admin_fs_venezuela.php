@@ -70,14 +70,14 @@ class admin_fs_venezuela extends fs_controller {
                 $this->new_message("Configurando Impuestos");
                 $this->set_taxes();
                 $this->new_message("Impuestos agregados correctamente");
-            } else if($opc == "regimen") {
+            } else if ($opc == "regimen") {
                 $this->new_message("Estableciendo Regímenes de Impuesto");
                 /// Si hay usa lista personalizada en fs_vars, la usamos
                 $fsvar = new \fs_var();
                 $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
             }
         } else {
-            $this->check_accounting_year();$this->share_extensions();
+            $this->check_accounting_year(); $this->share_extensions();
         }
     }
 
