@@ -18,8 +18,12 @@ https://www.facturascripts.com/tareas
 ## FS_Venezuela
 FS_Venezuela es el plugin desarrollado implementar FacturaScripts sin problemas en Venezuela.
 
-Este plugin está basado en las instrucciones encontradas en tutoriales de Factura Scripts, con el podrás configurar con un clic 
-1.- El país Venezuela configurado como "País por defecto"
-2.- La moneda VEF configurada como "Moneda por defecto"
-3.- Establecer impuestos de IVA aplicados en Venezuela
+Este plugin está basado en las instrucciones encontradas en tutoriales de Factura Scripts, con este plugin podrás configurar con un clic:
+
+1.- El país Venezuela como "País por defecto".
+
+2.- La moneda VEF como "Moneda por defecto".
+
+3.- Establecer impuestos de IVA aplicados en Venezuela.
+
 4.- Importar datos contables.
