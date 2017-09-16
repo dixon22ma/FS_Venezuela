@@ -16,7 +16,7 @@ Si desdeas colaborar puedes dirigirte a la sección en nuestra web con todas las
 https://www.facturascripts.com/tareas
 
 ## FS_Venezuela
-FS_Venezuela es el plugin desarrollado implementar FacturaScripts sin problemas en Venezuela.
+FS_Venezuela es el plugin desarrollado para implementar FacturaScripts sin problemas en Venezuela.
 
 Este plugin está basado en las instrucciones encontradas en tutoriales de Factura Scripts, con este plugin podrás configurar con un clic:
 
