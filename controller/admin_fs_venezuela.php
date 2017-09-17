@@ -180,8 +180,7 @@ class admin_fs_venezuela extends fs_controller {
         $accountingYear = $accountingYear0->get_by_fecha($this->today());
         if ($accountingYear) {
             $subAccountingYear0 = new subcuenta();
-            foreach ($subAccountingYear0->all_from_ejercicio($accountingYear->codejercicio) as $sc) {
-                echo $sc;
+            if(!empty($subAccountingYear0->all_from_ejercicio($accountingYear->codejercicio)->all())) {
                 return TRUE;
             }
         }
