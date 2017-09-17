@@ -55,31 +55,30 @@ class admin_fs_venezuela extends fs_controller {
         $value = filter_input(INPUT_GET, "value");
         if(!empty(filter_input(INPUT_GET, "opc")) ) {
             switch (filter_input(INPUT_GET, "opc")) {
-                case "country" && !empty($value):
-                    $this->empresa->codpais = $value;
-                    $msg = $this->empresa->save() ? "Empresa actualizada correctamente" : "Ya es el país por defecto ó no seleccionastes algún país";
-                    $this->new_message($msg);                    
-                    break;
-                case "currency" && !empty($value): 
-                    $this->empresa->coddivisa = $value;
-                    $msg = $this->empresa->save() ? "Empresa acutalizada correctamente" : "Ya es la moneda por defecto ó no seleccionastes alguna moneda";
-                    $this->new_message($msg);
-                    break;
-                case "taxes":
-                    $this->new_message("Configurando Impuestos");
-                    $this->set_taxes();
-                    $this->new_message("Impuestos agregados correctamente");
-                    break;
-                case "regimen":
-                    $this->new_message("Estableciendo Regímenes de Impuesto");
-                    $fsvar = new \fs_var(); // Si hay una lista personalizada en fs_vars, la usamos
-                    $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO, IVA8') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
-                    break;
-                default:
-                    $this->check_accounting_year(); $this->share_extensions();
-                    break;
+                case "country" && !empty($value): $this->set_country_code($value); break;
+                case "currency" && !empty($value): $this->set_currency($value); break;
+                case "taxes": $this->set_taxes(); break;
+                case "regimen": $this->set_regimen(); break;
             }
+            $this->check_accounting_year(); $this->share_extensions();
         }
+    }
+    
+    private function set_regimen() {
+        $this->new_message("Estableciendo Regímenes de Impuesto");
+        $fsvar = new \fs_var(); // Si hay una lista personalizada en fs_vars, la usamos
+        $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO, IVA8') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
+    }
+    private function set_country_code($value) {
+        $this->empresa->codpais = $value;
+        $msg = $this->empresa->save() ? "Empresa actualizada correctamente" : "Ya es el país por defecto ó no seleccionastes algún país";
+        $this->new_message($msg);                    
+    }
+    
+    private function set_currency($value) {
+        $this->empresa->coddivisa = $value;
+        $msg = $this->empresa->save() ? "Empresa acutalizada correctamente" : "Ya es la moneda por defecto ó no seleccionastes alguna moneda";
+        $this->new_message($msg);
     }
 
     /**
@@ -116,6 +115,7 @@ class admin_fs_venezuela extends fs_controller {
      * Set taxes by Venezuelan
      */
     private function set_taxes() {
+        $this->new_message("Configurando Impuestos");
         $allTaxes = new impuesto(); //  Delete taxes existing
         foreach ($allTaxes->all() as $tax) {
             $tax->delete();
@@ -128,6 +128,7 @@ class admin_fs_venezuela extends fs_controller {
             $tax->iva = $value["porc"];
             $tax->save();
         }
+        $this->new_message("Impuestos agregados correctamente");
     }
 
     /**
