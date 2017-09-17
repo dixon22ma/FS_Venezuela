@@ -72,7 +72,7 @@ class admin_fs_venezuela extends fs_controller {
                     break;
                 case "regimen":
                     $this->new_message("Estableciendo Regímenes de Impuesto");
-                    $fsvar = new \fs_var(); // Si hay usa lista personalizada en fs_vars, la usamos
+                    $fsvar = new \fs_var(); // Si hay una lista personalizada en fs_vars, la usamos
                     $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO, IVA8') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
                     break;
                 default:
@@ -156,6 +156,13 @@ class admin_fs_venezuela extends fs_controller {
         }        
         return $opc;
     }
+    
+    public function is_set_regimenes() {
+        $fsvar = new \fs_var(); // Si hay una lista personalizada en fs_vars, la usamos
+        if(!$fsvar->simple_get("cliente::regimenes_iva")) { return false; } 
+        return true;
+    }
+
     /**
      * Estable el plan de cuentas
      * @return boolean

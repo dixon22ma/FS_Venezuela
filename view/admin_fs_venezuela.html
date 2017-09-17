@@ -64,7 +64,7 @@
             {if="$fsc->is_set_tax()"}
             <a href="{$fsc->url()}&opc=taxes" class="btn btn-block btn-success">
                 <span class="glyphicon glyphicon-ok"></span> &nbsp;
-                Establecer impuestos de Venezuela
+                Impuestos de Venezuela establecidos
             </a>
             {else}
             <a href="{$fsc->url()}&opc=taxes" class="btn btn-block btn-default">
@@ -77,7 +77,7 @@
             {if="$fsc->is_set_accounting_year()"}
             <a href="index.php?page=contabilidad_ejercicio&cod={$fsc->empresa->codejercicio}" target="_blank" class="btn btn-block btn-success">
                 <span class="glyphicon glyphicon-ok"></span> &nbsp;
-                Importar los datos contables
+                Datos Contables Importados
             </a>
             {else}
             <a href="index.php?page=contabilidad_ejercicio&cod={$fsc->empresa->codejercicio}" target="_blank" class="btn btn-block btn-default">
@@ -88,10 +88,10 @@
             <br/>
         </div>
         <div class="col-sm-4">
-            {if="$fsc->is_set_accounting_year()"}
+            {if="$fsc->is_set_regimenes()"}
             <a href="{$fsc->url()}&opc=regimen" class="btn btn-block btn-success">
                 <span class="glyphicon glyphicon-ok"></span> &nbsp;
-                Establecer Régimen de {#FS_IVA#}
+                Régimen de {#FS_IVA#} establecidos
             </a>
             {else}
             <a href="{$fsc->url()}&opc=regimen" class="btn btn-block btn-default">
