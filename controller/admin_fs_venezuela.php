@@ -73,7 +73,7 @@ class admin_fs_venezuela extends fs_controller {
                 case "regimen":
                     $this->new_message("Estableciendo Regímenes de Impuesto");
                     $fsvar = new \fs_var(); // Si hay usa lista personalizada en fs_vars, la usamos
-                    $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
+                    $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO, IVA8') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
                     break;
                 default:
                     $this->check_accounting_year(); $this->share_extensions();
@@ -120,7 +120,7 @@ class admin_fs_venezuela extends fs_controller {
         foreach ($allTaxes->all() as $tax) {
             $tax->delete();
         }
-        foreach ($this->taxes as $key => $value) {
+        foreach ($this->taxes as $value) {
             $tax = new impuesto();
             $tax->codimpuesto = $value["value"];
             $tax->descripcion = $value["desc"];
@@ -148,7 +148,7 @@ class admin_fs_venezuela extends fs_controller {
      */
     public function is_set_tax() {
         $opc = false;        
-        foreach ($this->taxes as $key => $value) {
+        foreach ($this->taxes as $value) {
             $tax = new impuesto(); //   Instancio al impuesto
             $tax->codimpuesto = $value['value']; // Inicializo el codigo del impuesto NOTA: Averiguar una mejor forma de consultar a la base de datos
             $opc = $tax->exists(); //   Verifico si existe el impuesto y lo asigno a  la variable
