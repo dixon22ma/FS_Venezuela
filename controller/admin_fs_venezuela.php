@@ -52,32 +52,33 @@ class admin_fs_venezuela extends fs_controller {
         );
     
     protected function private_core() {
-        if (filter_input(INPUT_GET, "opc")) {
-            $opc = filter_input(INPUT_GET, "opc");
-            $value = filter_input(INPUT_GET, "value");
-            if (!empty($value)) {
-                if ($opc == "country" && $value != $this->empresa->codpais) {
+        $value = filter_input(INPUT_GET, "value");
+        if(!empty(filter_input(INPUT_GET, "opc")) ) {
+            switch (filter_input(INPUT_GET, "opc")) {
+                case "country" && !empty($value):
                     $this->empresa->codpais = $value;
                     $msg = $this->empresa->save() ? "Empresa actualizada correctamente" : "Ya es el país por defecto ó no seleccionastes algún país";
-                    $this->new_message($msg);
-                } else if ($opc == "currency" && $value != $this->empresa->coddivisa) {
+                    $this->new_message($msg);                    
+                    break;
+                case "currency" && !empty($value): 
                     $this->empresa->coddivisa = $value;
                     $msg = $this->empresa->save() ? "Empresa acutalizada correctamente" : "Ya es la moneda por defecto ó no seleccionastes alguna moneda";
                     $this->new_message($msg);
-                }
+                    break;
+                case "taxes":
+                    $this->new_message("Configurando Impuestos");
+                    $this->set_taxes();
+                    $this->new_message("Impuestos agregados correctamente");
+                    break;
+                case "regimen":
+                    $this->new_message("Estableciendo Regímenes de Impuesto");
+                    $fsvar = new \fs_var(); // Si hay usa lista personalizada en fs_vars, la usamos
+                    $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
+                    break;
+                default:
+                    $this->check_accounting_year(); $this->share_extensions();
+                    break;
             }
-            if ($opc == "taxes") {
-                $this->new_message("Configurando Impuestos");
-                $this->set_taxes();
-                $this->new_message("Impuestos agregados correctamente");
-            } else if ($opc == "regimen") {
-                $this->new_message("Estableciendo Regímenes de Impuesto");
-                /// Si hay usa lista personalizada en fs_vars, la usamos
-                $fsvar = new \fs_var();
-                $fsvar->simple_save('cliente::regimenes_iva', 'IVA, EXCENTO') ? $this->new_message('Datos guardados correctamente.') : $this->new_message('Los Datos no fueron guardados.');
-            }
-        } else {
-            $this->check_accounting_year(); $this->share_extensions();
         }
     }
 
@@ -99,8 +100,8 @@ class admin_fs_venezuela extends fs_controller {
      * Verify is Accounting Year
      */
     private function check_accounting_year() {
-        $sc = new ejercicio();
-        foreach ($sc->all_abiertos() as $accountingYear) {
+        $ejer = new ejercicio();
+        foreach ($ejer->all_abiertos() as $accountingYear) {
             if ($accountingYear->longsubcuenta != 6) {
                 $accountingYear->longsubcuenta = 6;
                 $accountingYear->save() ?

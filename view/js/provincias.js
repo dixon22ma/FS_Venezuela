@@ -19,36 +19,36 @@
  */
 // Listado tomado de wikipedia https://es.wikipedia.org/wiki/Anexo:Estados_federales_de_Venezuela
 // consultado el 21-03-2016
-var provincia_list = [
-   {value: 'Amazonas'},
-   {value: 'Anzoátegui'},
-   {value: 'Apure'},
-   {value: 'Aragua'},
-   {value: 'Barinas'},
-   {value: 'Bolívar'},
-   {value: 'Carabobo'},
-   {value: 'Cojedes'},
-   {value: 'Delta Amacuro'},
-   {value: 'Distrito Capital'},
-   {value: 'Falcón'},
-   {value: 'Guárico'},
-   {value: 'Lara'},
-   {value: 'Mérida'},
-   {value: 'Miranda'},
-   {value: 'Monagas'},
-   {value: 'Nueva Esparta'},
-   {value: 'Portuguesa'},
-   {value: 'Sucre'},
-   {value: 'Táchira'},
-   {value: 'Trujillo'},
-   {value: 'Vargas'},
-   {value: 'Yaracuy'},
-   {value: 'Zulia'},
-   {value: 'Dependencias Federales'},
+var Provincia_List = [
+   {value: "Amazonas"},
+   {value: "Anzoátegui"},
+   {value: "Apure"},
+   {value: "Aragua"},
+   {value: "Barinas"},
+   {value: "Bolívar"},
+   {value: "Carabobo"},
+   {value: "Cojedes"},
+   {value: "Delta Amacuro"},
+   {value: "Distrito Capital"},
+   {value: "Falcón"},
+   {value: "Guárico"},
+   {value: "Lara"},
+   {value: "Mérida"},
+   {value: "Miranda"},
+   {value: "Monagas"},
+   {value: "Nueva Esparta"},
+   {value: "Portuguesa"},
+   {value: "Sucre"},
+   {value: "Táchira"},
+   {value: "Trujillo"},
+   {value: "Vargas"},
+   {value: "Yaracuy"},
+   {value: "Zulia"},
+   {value: "Dependencias Federales"},
 ];
 
 $(document).ready(function() {
    $("#ac_provincia, #ac_provincia2").autocomplete({
-      lookup: provincia_list,
+      lookup: Provincia_List,
    });
 });
