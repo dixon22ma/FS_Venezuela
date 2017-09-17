@@ -19,7 +19,7 @@
  */
 // Listado tomado de wikipedia https://es.wikipedia.org/wiki/Anexo:Estados_federales_de_Venezuela
 // consultado el 21-03-2016
-var Provincia_List = [
+var ProvinciaList = [
    {value: "Amazonas"},
    {value: "Anzoátegui"},
    {value: "Apure"},
@@ -49,6 +49,6 @@ var Provincia_List = [
 
 $(document).ready(function() {
    $("#ac_provincia, #ac_provincia2").autocomplete({
-      lookup: Provincia_List,
+      lookup: ProvinciaList,
    });
 });

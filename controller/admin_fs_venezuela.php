@@ -138,9 +138,8 @@ class admin_fs_venezuela extends fs_controller {
     public function is_format_currency() {
         if (FS_POS_DIVISA == 'right') {
             return TRUE;
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
