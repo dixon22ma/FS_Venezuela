@@ -53,9 +53,12 @@ class admin_fs_venezuela extends fs_controller {
 
     protected function private_core() {
         $value = filter_input(INPUT_GET, "value");
+        echo json_encode(filter_input(INPUT_GET, "opc"));
+        echo json_encode($value);
+        // exit();
         if (!empty(filter_input(INPUT_GET, "opc"))) {
             switch (filter_input(INPUT_GET, "opc")) {
-                case "country" && !empty($value): $this->set_country_code($value);
+                case "country": $this->set_country_code($value);                    
                     break;
                 case "currency" && !empty($value): $this->set_currency($value);
                     break;
